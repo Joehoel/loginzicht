@@ -1,2 +1,2 @@
 # loginzicht
-App with face recognition
+Login with face recognition
