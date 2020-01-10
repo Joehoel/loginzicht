@@ -1,7 +1,7 @@
-<?php 
+<?php
 $apiKey = "0zS0ftbUTfv7o1KOlBSoTgKbkYg1ft5u";
 $apiSecret =  "DVCymhTIoHwLSxqBM9E8riDIxifCQCOS";
-$host = 'https://api-cn.faceplusplus.com';
+$host = 'https://api-us.faceplusplus.com';
 
 include_once 'FppClient.php';
 
@@ -18,4 +18,3 @@ $data = array(
 
 $resp = $client->detectFace($data);
 var_dump($resp);
-?>
