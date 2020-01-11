@@ -13,7 +13,7 @@ $client = new FppClient($apiKey, $apiSecret, $host);
 $data = array(
     'image_url' => "https://www.faceplusplus.com.cn/scripts/demoScript/images/demo-pic10.jpg",
     'return_landmark' => '2',
-    'return_attributes' => 'age,headpose'
+    'return_attributes' => 'age, headpose'
 );
 
 $resp = $client->detectFace($data);
