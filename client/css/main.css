@@ -1,23 +1,25 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Public+Sans&display=swap');
 
 :root {
-    --primary-color: ;
-    --secondary-color: ;
-    --font-size: 16px;
-} 
+  --primary-color: ;
+  --secondary-color: ;
+  --font-size: 16px;
+}
 
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: var(--font-size);
+  font-family: 'Public Sans', sans-serif;
+  font-size: var(--font-size);
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
