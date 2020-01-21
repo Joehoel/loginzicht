@@ -6,6 +6,8 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<script defer src="./js/face-api.js"></script>
 		<script defer src="./js/main.js"></script>
+		<link rel="stylesheet" href="./css/normalize.css" />
+		<link rel="stylesheet" href="./css/main.css" />
 		<title>Register</title>
 		<style>
 			body {
@@ -21,6 +23,21 @@
 		</style>
 	</head>
 	<body>
+		<!-- Camera -->
+		<main id="camera">
+			<!-- Camera sensor -->
+			<canvas id="camera--sensor"></canvas>
+
+			<!-- Camera view -->
+			<video id="camera--view" autoplay playsinline></video>
+
+			<!-- Camera output -->
+			<img src="//:0" alt="" id="camera--output" />
+
+			<!-- Camera trigger -->
+			<button id="camera--trigger">Take a picture</button>
+		</main>
+
 		<input type="file" id="imageUpload" />
 	</body>
 </html>
