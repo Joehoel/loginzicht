@@ -25,16 +25,19 @@ function saveImage(canvas) {
   const img = canvas.toDataURL();
   // console.log(img);
 }
-// Take a picture when cameraTrigger is tapped
-cameraTrigger.onclick = function() {
+
+function takePhoto() {
   cameraSensor.width = cameraView.videoWidth;
   cameraSensor.height = cameraView.videoHeight;
   cameraSensor.getContext('2d').drawImage(cameraView, 0, 0);
   cameraOutput.src = cameraSensor.toDataURL('image/webp');
-  cameraOutput.classList.add('taken');
+  // cameraOutput.classList.add('taken');
   saveImage(cameraSensor);
   // track.stop();
-};
+}
+
+// Take a picture when cameraTrigger is tapped
+cameraTrigger.addEventListener('click', takePhoto);
 
 // Start the video stream when the window loads
 window.addEventListener('load', cameraStart, false);
@@ -56,7 +59,6 @@ async function start() {
 
   const labeledFaceDescriptors = await loadLabeledImages();
   const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors, 0.6);
-
   let image;
   let canvas;
 
@@ -114,6 +116,7 @@ function loadLabeledImages() {
           .withFaceLandmarks()
           .withFaceDescriptor();
         descriptions.push(detections.descriptor);
+        // console.log(descriptions);
       }
 
       return new faceapi.LabeledFaceDescriptors(label, descriptions);
