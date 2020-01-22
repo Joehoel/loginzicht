@@ -19,7 +19,6 @@ body {
   font-family: 'Public Sans', sans-serif;
   font-size: var(--font-size);
   background: url('../assets/eyes_bg.png');
-  /* background-position: center; */
   background-repeat: no-repeat;
 }
 
