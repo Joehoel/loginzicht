@@ -1,10 +1,10 @@
 <?php
-header('Content-Type: application/x-www-form-urlencoded');
+header('Content-Type: image/jpeg');
 header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
+
 $input = file_get_contents("php://input");
-print($input);
 $data = json_decode($input);
 if ($data) {
   foreach ($data as $key => $value) {
