@@ -1,9 +1,17 @@
 <?php
-
-// We'll be granting access to only the arunranga.com domain 
-// which we think is safe to access this resource as application/xml
-
+header('Content-Type: application/x-www-form-urlencoded');
+header('Access-Control-Allow-Methods: *');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Headers: *');
-$data = json_decode(file_get_contents("php://input"));
-var_dump($data);
+$input = file_get_contents("php://input");
+print($input);
+$data = json_decode($input);
+if ($data) {
+  foreach ($data as $key => $value) {
+    list($type, $value) = explode(';', $value);
+    list(, $value)      = explode(',', $value);
+    $value = base64_decode($value);
+
+    file_put_contents('./images/Joel/2.jpg', $value);
+  };
+}
