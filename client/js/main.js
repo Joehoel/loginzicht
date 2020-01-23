@@ -21,9 +21,15 @@ function cameraStart() {
     });
 }
 
-function saveImage(canvas) {
-  const img = canvas.toDataURL();
-  // console.log(img);
+function saveImage(img) {
+  fetch('http://localhost:8000', {
+    method: 'POST',
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+      // 'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(img)
+  });
 }
 
 function takePhoto() {
@@ -32,7 +38,8 @@ function takePhoto() {
   cameraSensor.getContext('2d').drawImage(cameraView, 0, 0);
   cameraOutput.src = cameraSensor.toDataURL('image/webp');
   // cameraOutput.classList.add('taken');
-  saveImage(cameraSensor);
+
+  saveImage(cameraSensor.toDataURL());
   // track.stop();
 }
 

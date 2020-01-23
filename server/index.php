@@ -1,21 +1,9 @@
 <?php
-$apiKey = "0zS0ftbUTfv7o1KOlBSoTgKbkYg1ft5u";
-$apiSecret =  "DVCymhTIoHwLSxqBM9E8riDIxifCQCOS";
-$host = 'https://api-us.faceplusplus.com';
 
-include_once 'FppClient.php';
+// We'll be granting access to only the arunranga.com domain 
+// which we think is safe to access this resource as application/xml
 
-use Fpp\FppClient;
-
-
-$client = new FppClient($apiKey, $apiSecret, $host);
-
-$data = array(
-    'image_url' => "https://www.faceplusplus.com.cn/scripts/demoScript/images/demo-pic9.jpg",
-    'return_landmark' => '2',
-    'return_attributes' => 'age, headpose'
-);
-
-$resp = $client->detectFace($data);
-
-var_dump($resp);
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Headers: *');
+$data = json_decode(file_get_contents("php://input"));
+var_dump($data);
