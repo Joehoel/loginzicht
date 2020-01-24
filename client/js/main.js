@@ -22,13 +22,15 @@ function cameraStart() {
 }
 
 function saveImage(img) {
-  fetch('http://localhost:8000', {
+  console.log({ img: img });
+  data = { img };
+  fetch('http://localhost:8000/index.php', {
     method: 'POST',
+    body: JSON.stringify(data),
     headers: {
-      'Access-Control-Allow-Origin': '*'
-      // 'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(img)
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json'
+    }
   });
 }
 
@@ -39,7 +41,7 @@ function takePhoto() {
   cameraOutput.src = cameraSensor.toDataURL('image/webp');
   // cameraOutput.classList.add('taken');
 
-  saveImage(cameraSensor.toDataURL());
+  saveImage(cameraSensor.toDataURL('image/jpeg', 0.5));
   // track.stop();
 }
 
@@ -110,14 +112,13 @@ async function start() {
 }
 
 function loadLabeledImages() {
-  const labels = ['Joel', 'Jamaro'];
+  const labels = ['Joel'];
   return Promise.all(
     labels.map(async label => {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
-        const img = await faceapi.fetchImage(
-          `https://raw.githubusercontent.com/Joehoel/FaceTest/master/labeled_images/${label}/${i}.jpg`
-        );
+        const img = new Image();
+        img.src = `http://localhost:8000/images/${label}/${i}.jpg`;
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
