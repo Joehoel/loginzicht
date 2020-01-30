@@ -2,6 +2,15 @@
 var constraints = { video: { facingMode: 'user' }, audio: false };
 var track = null;
 
+axios
+  .get('http://localhost:8000/public/images/Joel/1.jpg')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
 // Define constants
 const cameraView = document.querySelector('#camera--view'),
   cameraOutput = document.querySelector('#camera--output'),
@@ -24,7 +33,7 @@ function cameraStart() {
 function saveImage(img) {
   console.log({ img: img });
   data = { img };
-  fetch('http://localhost:8000/index.php', {
+  fetch('localhost:8000', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -40,7 +49,6 @@ function takePhoto() {
   cameraSensor.getContext('2d').drawImage(cameraView, 0, 0);
   cameraOutput.src = cameraSensor.toDataURL('image/webp');
   // cameraOutput.classList.add('taken');
-
   saveImage(cameraSensor.toDataURL('image/jpeg', 0.5));
   // track.stop();
 }
@@ -117,7 +125,9 @@ function loadLabeledImages() {
     labels.map(async label => {
       const descriptions = [];
       for (let i = 1; i <= 2; i++) {
-        const img = faceapi.fetchImage(`../../server/images/${label}/${i}.jpg`);
+        const img = faceapi.fetchImage(
+          `https://pure-cove-90224.herokuapp.com/images/${label}/${i}.jpg/`
+        );
         const detections = await faceapi
           .detectSingleFace(img)
           .withFaceLandmarks()
